@@ -1,3 +1,4 @@
+import {cart} from '../data/cart.js';//should be at top
 let htmlCode='';
 products.forEach((products)=>{
     const html=`<div class="product-container">
@@ -53,14 +54,14 @@ products.forEach((products)=>{
 });
 document.querySelector('.js-products').innerHTML=htmlCode;
 
-document.querySelector('.js-add-to-cart-button').forEach((button)=>{
+document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
     button.addEventListener('click',()=>{
         const productId=button.dataset.
         productId;//kebab case to  camelcase name
         let matchingItem;
         cart.forEach((items)=>{
-            if(productId=items.productId){
-                matchingItem==items;
+            if(productId===items.productId){
+                matchingItem=items;
             }
         })
         if(matchingItem){
@@ -68,10 +69,17 @@ document.querySelector('.js-add-to-cart-button').forEach((button)=>{
         }
         else{
             cart.push({
-                productName:productName,
+                productId:productId,
                 quantity:1
             });
         } 
+        let cartQuantity=0;
+        cart.forEach((items)=>{
+            cartQuantity+=items.quantity;
+
+        })
+        document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
+
         
           
 
