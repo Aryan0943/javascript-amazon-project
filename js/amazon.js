@@ -1,4 +1,5 @@
 import {cart} from '../data/cart.js';//should be at top
+import {products} from  '../data/products.js'; 
 let htmlCode='';
 products.forEach((products)=>{
     const html=`<div class="product-container">
