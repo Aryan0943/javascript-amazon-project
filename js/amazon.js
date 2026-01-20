@@ -1,4 +1,6 @@
-import {cart} from '../data/cart.js';//should be at top
+import {cart,addTOCart} from '../data/cart.js';//should be at top
+//import *  as cartModule from ''
+
 import {products} from  '../data/products.js'; 
 let htmlCode='';
 products.forEach((products)=>{
@@ -55,35 +57,25 @@ products.forEach((products)=>{
 });
 document.querySelector('.js-products').innerHTML=htmlCode;
 
+
+
+
+function updateCartQuantity(){
+    let cartQuantity=0;
+        cart.forEach((cartItems)=>{
+            cartQuantity+=cartItems.quantity;
+
+        })
+        document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
+}
+
 document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
     button.addEventListener('click',()=>{
         const productId=button.dataset.
         productId;//kebab case to  camelcase name
-        let matchingItem;
-        cart.forEach((items)=>{
-            if(productId===items.productId){
-                matchingItem=items;
-            }
-        })
-        if(matchingItem){
-            matchingItem.quantity+=1;
-        }
-        else{
-            cart.push({
-                productId:productId,
-                quantity:1
-            });
-        } 
-        let cartQuantity=0;
-        cart.forEach((items)=>{
-            cartQuantity+=items.quantity;
-
-        })
-        document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
-
         
-          
+        addTOCart(productId);
 
-        
+        updateCartQuantity();
     })
 })
