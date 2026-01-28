@@ -3,7 +3,9 @@ import {cart,addToCart} from '../data/cart.js';//should be at top
 import { formatCurrency } from './utilis/money.js';
 
 import {products} from  '../data/products.js'; 
+updateCartQuantity();
 let htmlCode='';
+
 products.forEach((product)=>{
     const html=`<div class="product-container">
           <div class="product-image-container">
@@ -62,12 +64,13 @@ document.querySelector('.js-products').innerHTML=htmlCode;
 
 
 function updateCartQuantity(){
-    let cartQuantity=0;
+        let cartQuantity=0;
         cart.forEach((cartItems)=>{
             cartQuantity+=cartItems.quantity;
 
         })
         document.querySelector('.js-cart-quantity').innerHTML=cartQuantity;
+        
 }
 
 document.querySelectorAll('.js-add-to-cart-button').forEach((button)=>{
