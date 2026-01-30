@@ -2,6 +2,7 @@ import  {cart}  from "../../data/cart.js";
 import { products } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryoption.js";
 import {formatCurrency} from "../utilis/money.js"
+
 export function renderPaymentSummary(){
     let totalItems=0;
     let  deliveryCharges=0;
@@ -14,11 +15,9 @@ export function renderPaymentSummary(){
 
                 
             }
+        });
         let deliveryOption=getDeliveryOption(cartItem.deliveryId);
         deliveryCharges+=deliveryOption.deliveryPriceCents;
-
-
-        });
         
         
         

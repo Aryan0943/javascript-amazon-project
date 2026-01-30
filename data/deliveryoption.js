@@ -20,7 +20,7 @@ export const deliveryOption=[{
 export function  getDeliveryOption(deliveryId){
     let deliverySelection;
         deliveryOption.forEach((option)=>{
-            if(deliveryId===deliveryOption.id){
+            if(deliveryId===option.id){
                 deliverySelection=option;    
             }
 

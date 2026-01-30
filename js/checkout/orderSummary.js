@@ -3,6 +3,8 @@ import {products} from '../../data/products.js';
 import { formatCurrency } from '../utilis/money.js';//named export
 import  dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';//default export
 import {deliveryOption} from '../../data/deliveryoption.js';
+import { renderPaymentSummary  
+ } from './paymentSummary.js';
 export function renderOrderSummary(){
   let cartSummaryHTML='';
   console.log(products);
@@ -78,7 +80,7 @@ export function renderOrderSummary(){
           const today=dayjs();
           const deliveryDate=today.add(deliveryOptions.deliveryDays,'days');
           const displayDate=deliveryDate.format('dddd,  MMMM D');
-          const priceCents=formatCurrency(deliveryOptions.deliveryPriceCents)==0?'FREE':`$${formatCurrency(deliveryOptions.deliveryPriceCents)}`;
+          const priceCents=formatCurrency(deliveryOptions.deliveryPriceCents)===0?'FREE':`$${formatCurrency(deliveryOptions.deliveryPriceCents)}`;
 
           const isChecked=deliveryOptions.id===cartItem.deliveryId;
           html+=
@@ -107,6 +109,7 @@ export function renderOrderSummary(){
           removeFromCart(productId);
 
           document.querySelector(`.js-cart-item-container-${productId}`).remove();
+          renderPaymentSummary();
           
       })
   })
@@ -116,6 +119,7 @@ export function renderOrderSummary(){
       const {deliveryId,productId}=element.dataset;
       updateDeliveryOption(productId,deliveryId);
       renderOrderSummary();// this technique is knowns as MVC(model(store)-view(generate html) controller(event listners))
+      renderPaymentSummary();
     })
   });
   
