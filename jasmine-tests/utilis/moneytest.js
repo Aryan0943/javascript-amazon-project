@@ -1,4 +1,4 @@
-import {formatCurrency}  from "../js/utilis/money.js";
+import {formatCurrency}  from "../../js/utilis/money.js";
 
 describe('test suite:format currency',()=>{
     it('convert cents to dollars',()=>{
