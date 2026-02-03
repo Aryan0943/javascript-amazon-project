@@ -31,7 +31,7 @@ export function renderOrderSummary(){
           if(product.id===productId){
               matchingProduct=product;
               cartSummaryHTML+=
-              `<div class="cart-item-container js-cart-item-container-${product.id}">
+              `<div class="cart-item-container js-cart-item-container js-cart-item-container-${product.id}">
               <div class="delivery-date">
                 Delivery date: ${displayDate}
               </div>
@@ -47,14 +47,14 @@ export function renderOrderSummary(){
                   <div class="product-price">
                     $${formatCurrency(product.priceCents)}
                   </div>
-                  <div class="product-quantity">
+                  <div class="product-quantity js-product-quantity-${product.id}">
                     <span>
                       Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                     </span>
                     <span class="update-quantity-link link-primary">
                       Update
                     </span>
-                    <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${product.id}">
+                    <span class="delete-quantity-link link-primary js-delete-link js-delete-link-${product.id}" data-product-id="${product.id}">
                       Delete
                     </span>
                   </div>
