@@ -1,3 +1,6 @@
+class Cart{//name shoulde be in pascal case
+
+}
 function Cart(localStorageName){
    const cart={
     cartItems:undefined,
