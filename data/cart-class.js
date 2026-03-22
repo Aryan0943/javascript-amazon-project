@@ -1,11 +1,12 @@
 class Cart{//name shoulde be in pascal case
-
-}
-function Cart(localStorageName){
-   const cart={
-    cartItems:undefined,
+    cartItems;
+    localStorageKey;
+    constructor(localStorageKey){
+        this.localStorageKey=localStorageKey;
+        this.loadFromStorage();
+    }
     loadFromStorage(){
-        this.cartItems=JSON.parse(localStorage.getItem(localStorageName));
+        this.cartItems=JSON.parse(localStorage.getItem(this.localStorageKey));
 
         if(!this.cartItems){
             this.cartItems=[{
@@ -22,11 +23,11 @@ function Cart(localStorageName){
 
         }
 
-    },
+    }
     saveToStorage(){
-        localStorage.setItem(localStorageName,JSON.stringify(this.cartItems));
+        localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems));
 
-    },
+    }
     addToCart(productId){
         let matchingItem;
         this.cartItems.forEach((cartItem)=>{
@@ -48,7 +49,7 @@ function Cart(localStorageName){
         this.saveToStorage();
 
 
-    },
+    }
     removeFromCart(productId){
         const newCart=[];
         this.cartItems.forEach((cartItem)=>{
@@ -59,7 +60,7 @@ function Cart(localStorageName){
         this.cartItems==newCart;
         this.saveToStorage();
 
-    },
+    }
     updateDeliveryOption(productId,deliveryOptionId){
         let  matchingItem;
         this.cartItems.forEach((cartItem)=>{
@@ -72,16 +73,15 @@ function Cart(localStorageName){
     }
 
 
-    };
-    return cart; 
-}
-const cart=Cart('cart-oop');
 
-cart.loadFromStorage();
+}
+
+const cart=new Cart('cart-oop');
+
 // cart.addToCart('83d4ca15-0f35-48f5-b7a3-1ea210004f2e');
 // console.log(cart);
 
 const businessCart=Cart('cart-business');
 businessCart.loadFromStorage();
-
+console.log(businessCart instanceof Cart);
 //class=>object generator
