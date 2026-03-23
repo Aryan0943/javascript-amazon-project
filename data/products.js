@@ -38,6 +38,29 @@ class Product{
 //     ]
 //   });
 
+
+// const  date=new Date();
+// console.log(date);
+// console.log(date.getLocalTimeString());
+
+// console.log(this);//undefined
+// const object2={
+//   a:2,
+//   b:this.a
+// }
+// function logThis(){
+//   console.log(this);
+// }
+// logThis();
+// logThis.call('Hello');
+
+// const object3={
+//   method:()=>{
+//     console.log(this);
+//   }
+// }
+// object3.method();
+
 class Clothing extends Product{//Inheritance
   sizeChartLink;
   constructor(productDetails){
