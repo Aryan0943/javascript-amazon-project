@@ -1,6 +1,6 @@
 import {cart,addToCart} from '../data/cart.js';//should be at top
 //import *  as cartModule from ''
-import { formatCurrency } from './utilis/money.js';
+// import { formatCurrency } from './utilis/money.js';
 
 import {products} from  '../data/products.js'; 
 updateCartQuantity();
@@ -19,16 +19,16 @@ products.forEach((product)=>{
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${product.rating.stars*10}.png">
+              src="${product.getStars()}">
             <div class="product-rating-count link-primary">
               ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-            $${formatCurrency(product.priceCents/100)}
+            ${product.getPrice()}
           </div>
-
+          ${product.extraInfoHTML()}
           <div class="product-quantity-container">
             <select>
               <option selected value="1">1</option>
