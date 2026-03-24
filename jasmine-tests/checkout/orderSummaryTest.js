@@ -1,7 +1,18 @@
 import { renderOrderSummary } from "../../js/checkout/orderSummary.js";
 import { loadFromLocalStorage,cart } from "../../data/cart.js";
+import { loadProducts } from "../../data/products.js";
 //integration test
 describe('Test Suite:renderOrderSummary',()=>{
+
+
+
+    beforeAll((done)=>{
+        loadProducts(()=>{
+            done();
+        });
+        
+
+    });
     beforeEach(()=>{//hook
         spyOn(localStorage,'setItem');
 
