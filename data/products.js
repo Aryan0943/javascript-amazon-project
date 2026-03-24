@@ -90,6 +90,25 @@ class Clothing extends Product{//Inheritance
 //   sizeChartLink: "images/clothing-size-chart.png"
 // });
 
+export  function loadProductsFetch(){
+  const promise=fetch("https://supersimplebackend.dev/products").then((response)=>{
+    return  response.json();
+  }).then((productsData)=>{
+    products=productsData.map((productDetails)=>{
+    if(productDetails.type==="clothing"){
+    return new Clothing(productDetails);
+    }
+    return new Product(productDetails);
+  });
+  
+  });
+  
+  return   promise;
+}
+loadProductsFetch().then(()=>{
+  console.log('next step');
+});
+
 export let products=[];
 export function loadProducts(fun){
   const xhr=new XMLHttpRequest();
